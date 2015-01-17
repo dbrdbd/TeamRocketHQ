@@ -1,0 +1,57 @@
+Start Function
+	create grid here
+Update
+	where all the checks and stuff go
+	if loss of block -> event Function 1
+event Function 1
+	will drop rest of blocks and add in new blocks (pull from function randompieces here too)
+
+Notes
+Start function = before first frame or physics update occurs
+Awake function - for each object in the scene at the time when the scene loads
+	all awakes finish before start is called
+MonoBehaviour.LateUpdate() - called after all update functions have been called, to get elapsed time since last call to LateUpdate, use Time.deltaTime
+
+to destroy object use function Destroy within Collider or within MonoBehaviour
+http://docs.unity3d.com/ScriptReference/Object.Destroy.html
+Time.fixedDeltatime - time within fixed frame rate updates are performed
+Time.maximumDeltaTime - maximum time a frame can take
+Destroy function - destroy an object after the frame update has finished or after a short time delay
+
+The phases of compilation are as follows:-
+
+Phase 1: Runtime scripts in folders called Standard Assets, Pro Standard Assets and Plugins.
+
+Phase 2: Editor scripts in folders called Standard Assets/Editor, Pro Standard Assets/Editor and Plugins/Editor.
+
+Phase 3: All other scripts that are not inside a folder called Editor.
+
+Phase 4: All remaining scripts (ie, the ones that are inside a folder called Editor).
+
+maybe consider using namespaces to differentiate between graphics, movement and rest?
+http://docs.unity3d.com/Manual/Namespaces.html
+
+
+start function
+	create grid here
+	use random function 2 to help
+
+Update
+	check movement validity, etc etc
+	if all is good -> event Function 1
+
+Event Function 1
+	will Destroy that set of blocks and add in randomized new objects
+	use random function 2 to do this
+
+Movement Function
+	all Henry
+
+MAIN FUNCTION
+	Start
+	Set time
+		Movement function
+		Update -> Event Function
+		have a basic incremental counter that will act as score
+		repeat until timer runs out
+	Print out score	
