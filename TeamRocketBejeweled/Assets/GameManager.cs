@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 
 		int[ , ] GridList = new int[SizeGrid, SizeGrid];
+		GameObject[ , ] cList = new GameObject[SizeGrid, SizeGrid];
 
 		//initialize Grid to a series of numbers between 1 and 4
 		for ( int i = 0; i < SizeGrid; i++ ) {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour {
 		for ( int i = 0; i < SizeGrid; i++ ) {
 			for ( int j = 0; j < SizeGrid; j++ ) {
 				GameObject key = RandomGenerator( GridList[i, j] );
+				cList[ i, j ] = key;
 				key.transform.position = new Vector3( i, j, 0 );
 			}
 		}
@@ -42,54 +44,11 @@ public class GameManager : MonoBehaviour {
 		
 		return ans;
 	}
-	/*
-	void Start () {
 
-		public int[] cList;
-		public int[] cList2;
-		
-			
-			int count = 0;
-			int x = -3;
-			int z = -3;
-			
-			while(x <= 3)
-			{
-				while(z<=3)
-				{
-					if (gridList[count] == 1)
-					{
-						var a = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-						a.transform.position = new Vector3(x,0,z);
-						count++;
-						z+=1;
-					}
-					else if (gridList[count] == 2)
-					{
-						var a = GameObject.CreatePrimitive(PrimitiveType.Cube);
-						a.transform.position = new Vector3(x,0,z);
-						count++;
-						z+=1;
-					}
-					else if (gridList[count] == 3)
-					{
-						var a = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-						a.transform.position = new Vector3(x,0,z);
-						count++;
-						z+=1;
-					}
-					else if (gridList[count] == 4)
-					{
-						var a = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-						a.transform.position = new Vector3(x,0,z);
-						count++;
-						z+=1;
-					}
-				}
-				z = -3;
-				x+=1;
-			}
-		} */
+	//ADD SWAP FUNCTION HERE WITH CHECKS
+
+	//ADD DESTROY AND REPLACE HERE
+	
 	// Update is called once per frame
 	void Update () {
 	
