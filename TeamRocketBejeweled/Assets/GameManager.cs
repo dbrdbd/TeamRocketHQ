@@ -4,8 +4,8 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
 	private const int SizeGrid = 7;
-	//creates first grid - maybe make this  void Start() {} ?
 
+	//creates first grid
 	void Start () {
 
 		int[ , ] GridList = new int[SizeGrid, SizeGrid];
@@ -18,11 +18,17 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
-		//Call Random Generator to figure out which colored sphere to put where and place it there
+		//Call Random Generator to figure out which colored sphere to put where 
+		//and place it there
+		//also set up a name for each object in GridList via a number
+		int counter = 1;
+
 		for ( int i = 0; i < SizeGrid; i++ ) {
 			for ( int j = 0; j < SizeGrid; j++ ) {
 				GameObject key = RandomGenerator( GridList[i, j] );
 				cList[ i, j ] = key;
+				GridList[ i, j ] = counter;
+				counter++;
 				key.transform.position = new Vector3( i, j, 0 );
 			}
 		}
@@ -45,12 +51,14 @@ public class GameManager : MonoBehaviour {
 		return ans;
 	}
 
+
+
 	//ADD SWAP FUNCTION HERE WITH CHECKS
 
 	//ADD DESTROY AND REPLACE HERE
 	
 	// Update is called once per frame
 	void Update () {
-	
+		print ("In update function");
 	}
 }
