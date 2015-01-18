@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
 			for ( int j = 0; j < SizeGrid; j++ ) {
 				GameObject key = RandomGenerator( GridList[i, j], counter );
 				cList[ i, j ] = key;
+				GridList[ i, j ] = counter;
 				counter++;
 				key.transform.position = new Vector3( i, j, 0 );
 			}
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	//maybe call it update function?
-	/* void main () {
+/*	 void main () {
 		while ( Time.realtimeSinceStartup <= FinalTime ) { //timer to check - game not longer than 3 min
 			//movement function here
 			//swap function here
@@ -74,9 +75,11 @@ public class GameManager : MonoBehaviour {
 
 			FinalTime = 10;
 		}
-		//end with text of total points
-		//GIVE TO MEGHNA
 
-		//guiText.text : "The End! \n Final Score: " + Score;
+		//end with text of total points
+		string FinalScore = Score;
+		string End = "GAME OVER! \n Final Score: " + FinalScore;
+
+		GUIText : End;
 	} */
 }

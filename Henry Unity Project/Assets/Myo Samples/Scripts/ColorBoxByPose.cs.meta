@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: e9f73c111e5a1436295869186e2e823f
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - myo: {instanceID: 0}
+  - waveInMaterial: {fileID: 2100000, guid: 775c3bb66f6f34c638f9fbc4901950a4, type: 2}
+  - waveOutMaterial: {instanceID: 0}
+  - doubleTapMaterial: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
