@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
 		//initialize Grid to a series of numbers between 1 and 4
 		for ( int i = 0; i < SizeGrid; i++ ) {
 			for ( int j = 0; j < SizeGrid; j++ ) {
-				GridList[i, j] = Random.Range (1, 5);
+				GridList[i, j] = Random.Range (1, 9);
 			}
 		}
 
@@ -45,15 +45,23 @@ public class GameManager : MonoBehaviour {
 			ans.renderer.material.color = Color.blue;
 		else if ( a == 3 )
 			ans.renderer.material.color = Color.green;
-		else
+		else if ( a == 4 )
 			ans.renderer.material.color = Color.magenta;
+		else if ( a == 5 )
+			ans.renderer.material.color = Color.gray;
+		else if ( a == 6 )
+			ans.renderer.material.color = Color.yellow;
+		else if ( a == 7 )
+			ans.renderer.material.color = Color.cyan;
+		else
+			ans.renderer.material.color = Color.white;
 
 		ans.name = b.ToString();
 		return ans;
 	}
 
 	//maybe call it update function?
-/*	void main () {
+	/* void main () {
 		while ( Time.realtimeSinceStartup <= FinalTime ) { //timer to check - game not longer than 3 min
 			//movement function here
 			//swap function here
@@ -66,27 +74,9 @@ public class GameManager : MonoBehaviour {
 
 			FinalTime = 10;
 		}
-		//destroy entire grid
-		DestroyAll();
-
 		//end with text of total points
-		DrawEnd();
+		//GIVE TO MEGHNA
 
-	} 
-	void DrawEnd () {
-		GUI.Box(Rect(0,0,Screen.width,Screen.height),
-		          "The End! Final Score is: ");
-
-		GUI.Box(Rect(0,0,Screen.width,Screen.height),
-		          Score );
-	}
-
-	void DestroyAll () {
-
-		for ( int i = 0; i < SizeGrid; i++ ) {
-			for ( int j = 0; j < SizeGrid; j++ ) {
-				Destroy( Vector3( i, j, 0 ));
-			}
-		}
+		//guiText.text : "The End! \n Final Score: " + Score;
 	} */
 }
