@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour {
 		//Call Random Generator to figure out which colored sphere to put where 
 		//and place it there
 		//also set up a name for each object in GridList via a number
+		ReShape();
+	}
+
+	void ReShape() {
+
 		int counter = 1;
 
 		for ( int i = 0; i < SizeGrid; i++ ) {
@@ -59,6 +64,327 @@ public class GameManager : MonoBehaviour {
 
 		ans.name = b.ToString();
 		return ans;
+	}
+
+	void CheckDestroy(int var1, int var2)
+	{
+		bool threeLeft = ((cList [var1, var2] == cList [var1 - 1, var2]) && (cList [var1, var2] == cList [var1 - 2, var2]));
+		bool threeRight = ((cList[var1, var2] == cList[var1 + 1, var2]) && (cList[var1, var2] == cList[var1+2, var2]));
+		bool threeUp = ((cList[var1, var2] == cList[var1, var2+1]) && (cList[var1, var2] == cList[var1, var2+2]));
+		bool threeDown = ((cList[var1, var2] == cList[var1, var2-1]) && (cList[var1, var2] == cList[var1, var2-2]));
+		bool threeMidVert = ((cList[var1, var2] == cList[var1, var2+1]) && (cList[var1, var2] == cList[var1, var2-1]));
+		bool threeMidHor = ((cList[var1, var2] == cList[var1 + 1, var2]) && (cList[var1, var2] == cList[var1-1, var2]));
+		
+		bool fourUp = ((cList[var1, var2] == cList[var1, var2+1]) && (cList[var1, var2] == cList[var1, var2+2]) && (cList[var1, var2] == cList[var1, var2-1]));
+		bool fourDown = ((cList[var1, var2] == cList[var1, var2-1]) && (cList[var1, var2] == cList[var1, var2-2]) && (cList[var1, var2] == cList[var1, var2+1]));
+		bool fourRight = ((cList[var1, var2] == cList[var1+1, var2]) && (cList[var1, var2] == cList[var1+2, var2]) && (cList[var1, var2] == cList[var1-1, var2]));
+		bool fourLeft = ((cList[var1, var2] == cList[var1-1, var2]) && (cList[var1, var2] == cList[var1-2, var2]) && (cList[var1, var2] == cList[var1+1, var2]));
+		
+		bool fiveVert = ((cList[var1, var2] == cList[var1, var2+1]) && (cList[var1, var2] == cList[var1, var2+2]) && (cList[var1, var2] == cList[var1, var2-1]) && (cList[var1, var2] == cList[var1, var2-2]));
+		bool fiveHor = ((cList[var1, var2] == cList[var1+1, var2]) && (cList[var1, var2] == cList[var1+2, var2]) && (cList[var1, var2] == cList[var1-1, var2]) && (cList[var1, var2] == cList[var1-2, var2]));
+		
+		if((threeLeft || threeRight || threeUp || threeDown || threeMidHor || threeMidVert) == true)   
+		{
+			if( Event.current.Equals (Event.KeyboardEvent ("[enter]"))/*Movement is up*/ )
+			{
+				if((threeUp && fiveHor) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+				}
+				else if ((threeUp && fourRight) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+				}
+				else if((threeUp && fourLeft) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+				}
+				else if((threeUp && threeMidHor) == true)
+				{
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((fiveHor) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+				}
+				else if((fourRight) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+				}
+				else if((fourLeft)== true)
+				{
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeMidHor) == true)
+				{
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeUp) == true)
+				{
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				
+			}
+			else if( Input.GetKeyDown ("space")/*Movement is down*/ )
+			{
+				if((threeDown && fiveHor) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+				}
+				else if((threeDown && fourRight) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+				}
+				else if((threeDown && fourLeft) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+				}
+				else if((threeDown && threeMidHor) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+				}
+				else if((fiveHor) == true) 
+				{
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((fourRight) == true)
+				{
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((fourLeft)== true)
+				{
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeMidHor) == true)
+				{
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeDown) == true)
+				{
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				
+			}
+			else if(Input.GetKeyDown ("shift") /*Movement is right*/ )
+			{
+				if((threeRight && fiveVert) == true)
+				{
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1, var2], 5f);					
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);					
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+				}
+				else if((threeRight && fourUp) == true)
+				{
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeRight && fourDown) == true)
+				{
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeRight && threeMidVert) == true)
+				{
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((fiveVert) == true)
+				{
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((fourUp) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+				}
+				else if((fourDown) == true)
+				{
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2]);
+				}
+				else if((threeMidVert) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+				}
+				else if((threeRight) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1+1, var2], 5f);
+					Destroy (cList[var1+2, var2], 5f);
+				}
+			}
+			else if( Input.GetKeyDown ("tab")/*Movement is left*/ )
+			{
+				if((threeLeft && fiveVert) == true)
+				{
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeLeft && fourUp) == true)
+				{
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeLeft && fourDown) == true)
+				{
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeLeft && threeMidVert) == true)
+				{
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((fiveVert) == true)
+				{
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((fourUp) == true)
+				{
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2+2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((fourDown) == true)
+				{
+					Destroy (cList[var1, var2-2], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeMidVert) == true)
+				{
+					Destroy (cList[var1, var2+1], 5f);
+					Destroy (cList[var1, var2-1], 5f);
+					Destroy (cList[var1, var2], 5f);
+				}
+				else if((threeLeft) == true)
+				{
+					Destroy (cList[var1, var2], 5f);
+					Destroy (cList[var1-1, var2], 5f);
+					Destroy (cList[var1-2, var2], 5f);
+				}
+			}
+		}
+		/*else  non Valid move, return to original position
+		{
+			
+		}*/
+		
 	}
 
 	//maybe call it update function?
